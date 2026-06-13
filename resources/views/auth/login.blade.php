@@ -1,47 +1,59 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-gray-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema SOM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-md border border-gray-100">
+        
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">
+                Sistema Oficina Mecânica
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Entre e controle os serviços da sua oficina mecânica
+            </p>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <form class="mt-8 space-y-6" action="{{ route('login') }}" method="POST">
+            @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <div class="space-y-4 rounded-md shadow-sm">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                        Endereço de E-mail
+                    </label>
+                    <input id="email" name="email" type="email" autocomplete="email" required autofocus
+                        value="{{ old('email') }}"
+                        class="appearance-none relative block w-full px-3 py-2.5 border @error('email') border-red-300 text-red-900 placeholder-red-300 @else border-gray-300 placeholder-gray-400 text-gray-900 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-150 ease-in-out" 
+                        placeholder="seu@email.com">
+                    
+                    @error('email')
+                        <p class="mt-1.5 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+                        Sua Senha
+                    </label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required
+                        class="appearance-none relative block w-full px-3 py-2.5 border @error('email') border-red-300 text-red-900 placeholder-red-300 @else border-gray-300 placeholder-gray-400 text-gray-900 @enderror rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition duration-150 ease-in-out" 
+                        placeholder="••••••••">
+                </div>
+            </div>
+            <div>
+                <button type="submit" 
+                    class="group relative w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold shadow transition duration-150 ease-in-out">
+                    Entrar no sistema
+                </button>
+            </div>
+        </form>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</body>
+</html>
