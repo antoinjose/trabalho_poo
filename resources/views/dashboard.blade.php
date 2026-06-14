@@ -31,11 +31,11 @@
             <a href="{{ route('veiculos.index') }}" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                 <i data-lucide="car" class="w-5 h-5"></i> Veículos
             </a>
-            <a href="#" class="flex items-center justify-between px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
+            <a href="{{ route('ordens.index') }}" class="flex items-center justify-between px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                 <div class="flex items-center gap-3">
                     <i data-lucide="file-text" class="w-5 h-5"></i> Ordens de serviço
                 </div>
-                <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded">14</span>
+                <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded">1</span>
             </a>
         </nav>
     </aside>
@@ -106,7 +106,7 @@
             <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
                 <div class="p-6 border-b border-gray-100 flex items-center gap-2">
                     <i data-lucide="clipboard-list" class="text-indigo-600"></i>
-                    <h3 class="font-bold text-gray-800">Ordens Abertas (14)</h3>
+                    <h3 class="font-bold text-gray-800">Ordens Abertas (1)</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
@@ -123,8 +123,6 @@
                         <tbody class="divide-y divide-gray-100">
                             @foreach([
                                 ['id' => '# 4', 'cliente' => 'Priscila Oliveira Lima', 'carro' => 'Fiat Toro', 'data' => '02/06/2025', 'status' => 'ABERTA'],
-                                ['id' => '# 5', 'cliente' => 'Priscila Oliveira Lima', 'carro' => 'Fiat Toro', 'data' => '21/05/2025', 'status' => 'ABERTA'],
-                                ['id' => '# 6', 'cliente' => 'Gustavo Pereira Rocha', 'carro' => 'Toyota Corolla', 'data' => '28/05/2025', 'status' => 'ABERTA']
                             ] as $ordem)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-6 py-4 font-bold text-indigo-600">{{ $ordem['id'] }}</td>

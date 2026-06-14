@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\OrdemServicoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('clientes', ClienteController::class);
     Route::resource('veiculos', VeiculoController::class);
+    Route::resource('ordens', OrdemServicoController::class);
 });
