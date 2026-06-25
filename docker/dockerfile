@@ -1,0 +1,35 @@
+FROM php:8.2-cli
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+        curl \
+        unzip \
+        libpng-dev \
+        libonig-dev \
+        libxml2-dev \
+        libzip-dev \
+        libicu-dev \
+        default-mysql-client \
+        libssl-dev \
+        nodejs \
+        npm \
+    && docker-php-ext-install pdo pdo_mysql zip bcmath gd intl \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www
+
+COPY . /var/www
+
+RUN chmod -R 775 storage bootstrap/cache \
+    && composer install --no-interaction --prefer-dist --no-progress \
+    && npm install --no-audit --no-fund
+
+EXPOSE 8000
