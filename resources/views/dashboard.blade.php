@@ -22,9 +22,6 @@
 
         <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
             <p class="text-[10px] uppercase font-bold text-gray-400 px-2 mt-4 mb-2">Início</p>
-            <a href="#" class="flex items-center gap-3 px-3 py-2 text-indigo-600 bg-indigo-50 rounded-lg font-medium">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard
-            </a>
             <a href="{{ route('clientes.index') }}" class="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                 <i data-lucide="users" class="w-5 h-5"></i> Clientes
             </a>
@@ -35,9 +32,27 @@
                 <div class="flex items-center gap-3">
                     <i data-lucide="file-text" class="w-5 h-5"></i> Ordens de serviço
                 </div>
-                <span class="bg-indigo-600 text-white text-[10px] px-1.5 py-0.5 rounded">1</span>
             </a>
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-xl transition duration-200">
+                    <i class="fas fa-power-off text-base"></i>
+                    Sair do Sistema
+                </button>
+            </form>
         </nav>
+
+    <div class="mt-auto border-t border-gray-200/60 p-4 bg-white">
+    <div class="flex flex-col space-y-1">
+        <p class="text-xs font-bold text-gray-700 tracking-wide uppercase">
+            Sistema SOM
+        </p>
+        
+        <p class="text-[11px] text-gray-400 font-medium leading-relaxed">
+            &copy; 2026 Todos os direitos reservados.
+        </p>
+    </div>
+</div>
     </aside>
 
     <main class="flex-1 flex flex-col overflow-y-auto">
@@ -45,11 +60,6 @@
         <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
             <div class="flex items-center gap-2 text-sm text-gray-500">
                 <span>Início</span> <span>/</span> <span class="font-semibold text-gray-800">Dashboard</span>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">
-                    {{ substr(Auth::user()->name ?? 'S', 0, 1) }}
-                </div>
             </div>
         </header>
 
@@ -102,57 +112,14 @@
                 </div>
 
             </div>
-
-            <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="p-6 border-b border-gray-100 flex items-center gap-2">
-                    <i data-lucide="clipboard-list" class="text-indigo-600"></i>
-                    <h3 class="font-bold text-gray-800">Ordens Abertas (1)</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold">
-                            <tr>
-                                <th class="px-6 py-4">Ordem</th>
-                                <th class="px-6 py-4">Cliente</th>
-                                <th class="px-6 py-4">Veículo</th>
-                                <th class="px-6 py-4">Data</th>
-                                <th class="px-6 py-4">Status</th>
-                                <th class="px-6 py-4 text-center">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            @foreach([
-                                ['id' => '# 4', 'cliente' => 'Priscila Oliveira Lima', 'carro' => 'Fiat Toro', 'data' => '02/06/2025', 'status' => 'ABERTA'],
-                            ] as $ordem)
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-6 py-4 font-bold text-indigo-600">{{ $ordem['id'] }}</td>
-                                <td class="px-6 py-4 text-gray-600 font-medium">{{ $ordem['cliente'] }}</td>
-                                <td class="px-6 py-4 text-gray-500">{{ $ordem['carro'] }}</td>
-                                <td class="px-6 py-4 text-gray-500">{{ $ordem['data'] }}</td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-yellow-100 text-yellow-700 text-[10px] font-bold px-2 py-1 rounded">
-                                        {{ $ordem['status'] }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] px-3 py-1.5 rounded flex items-center gap-1 mx-auto transition">
-                                        <i data-lucide="eye" class="w-3 h-3"></i> Ver
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </main>
 
     <script>
-        // Inicializa Ícones
+
         lucide.createIcons();
 
-        // Gráfico de Ordens (Barras)
+
         new Chart(document.getElementById('chartOrders'), {
             type: 'bar',
             data: {
@@ -167,7 +134,6 @@
             options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
         });
 
-        // Gráfico de Balanço (Linha Suave)
         new Chart(document.getElementById('chartBalance'), {
             type: 'line',
             data: {

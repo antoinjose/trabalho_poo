@@ -9,14 +9,20 @@
 </head>
 <body class="bg-gray-50">
     <div class="min-h-screen">
-        <!-- Header -->
         <div class="bg-white shadow-sm border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900">Clientes</h1>
-                        <p class="text-gray-500 mt-1">Gerencie os clientes do sistema</p>
+                    
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('dashboard') }}" class="text-gray-500 hover:text-gray-700" title="Voltar para o Dashboard">
+                            <i class="fas fa-arrow-left text-xl"></i>
+                        </a>
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Clientes</h1>
+                            <p class="text-gray-500 mt-1">Gerencie os clientes do sistema</p>
+                        </div>
                     </div>
+                    
                     <a href="{{ route('clientes.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md font-semibold flex items-center gap-2">
                         <i class="fas fa-plus"></i>Novo Cliente
                     </a>
@@ -24,10 +30,8 @@
             </div>
         </div>
 
-        <!-- Main Content -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
-            <!-- Alerts -->
             @if(session('success'))
                 <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6 flex items-start gap-3">
                     <i class="fas fa-check-circle mt-0.5"></i>
@@ -48,7 +52,6 @@
                 </div>
             @endif
 
-            <!-- Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full">
@@ -95,7 +98,6 @@
                 </div>
             </div>
 
-            <!-- Pagination -->
             <div class="mt-6">
                 {{ $clientes->links() }}
             </div>

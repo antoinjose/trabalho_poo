@@ -13,9 +13,15 @@
         <div class="bg-white shadow-sm border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900">Veículos</h1>
-                        <p class="text-gray-500 mt-1">Gerencie os veículos dos clientes</p>
+
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('dashboard') }}" class="text-gray-500 hover:text-gray-700" title="Voltar para o Dashboard">
+                            <i class="fas fa-arrow-left text-xl"></i>
+                        </a>
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Veículos</h1>
+                            <p class="text-gray-500 mt-1">Gerencie os veículos dos clientes</p>
+                        </div>
                     </div>
                     <a href="{{ route('veiculos.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md font-semibold flex items-center gap-2">
                         <i class="fas fa-plus"></i>Novo Veículo
