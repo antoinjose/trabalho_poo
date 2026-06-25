@@ -78,9 +78,6 @@
                                     <td class="px-6 py-4 text-sm text-gray-700">{{ $ordem->valor !== null ? 'R$ ' . number_format($ordem->valor, 2, ',', '.') : '-' }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-700">{{ $ordem->data_entrega?->format('d/m/Y') ?? '-' }}</td>
                                     <td class="px-6 py-4 text-sm flex flex-wrap gap-2">
-                                        <a href="{{ route('ordens.show', $ordem->id) }}" class="bg-indigo-600 text-white px-3 py-1 rounded text-xs hover:bg-indigo-700 transition duration-200 inline-flex items-center gap-1">
-                                            <i class="fas fa-eye"></i>Ver
-                                        </a>
                                         <a href="{{ route('ordens.edit', $ordem->id) }}" class="bg-amber-500 text-white px-3 py-1 rounded text-xs hover:bg-amber-600 transition duration-200 inline-flex items-center gap-1">
                                             <i class="fas fa-edit"></i>Editar
                                         </a>
